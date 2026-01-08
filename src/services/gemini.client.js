@@ -101,7 +101,7 @@ export const generateText = async ({
 
   const url = `${baseUrl}/v1beta/models/${encodeURIComponent(
     model
-  )}:embedContent?key=${encodeURIComponent(apiKey)}`;
+  )}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
   const { data } = await axios.post(
     url,

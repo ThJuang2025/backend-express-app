@@ -1,6 +1,7 @@
 import { users } from "../../mock-db/users.js";
 import { embedText, generateText } from "../../services/gemini.client.js";
 import { User } from "./users.model.js";
+import { queueEmbedUserById } from "./users.embedding.js";
 
 // 🟡 API v1
 // ❌ route handler: get all users (mock)
@@ -113,6 +114,8 @@ export const createUser2 = async (req, res, next) => {
 
     const safe = doc.toObject();
     delete safe.password;
+
+    queueEmbedUserById(doc._id);
 
     return res.status(201).json({
       success: true,
